@@ -1,0 +1,16 @@
+---
+- hosts: web
+  vars:
+    package: httpd
+
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: "{{ package }}"
+      state: installed
+
+  - name: ensure apache is running and enable it at boot
+    service:
+      name: "{{ package }}"
+      state: started
+      enabled: yes
